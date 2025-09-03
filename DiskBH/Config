@@ -1,0 +1,30 @@
+#	Configuraçoes do arquivo para um disco de acreção de um buraco negro + DIODE com potencial PseudoNEwtoniano (P.W)
+
+
+REQUIRES Driver
+REQUIRES physics/Eos
+REQUIRES physics/Hydro/HydroMain/split/PPM
+REQUIRES physics/Gravity/GravityMain/PointMass
+
+D  sim_mas              Massa da Estrela
+D  sim_temp             Temperatura do disco
+D  sim_dotmas           variação de massa
+D  sim_k		Constante de Bolztmann
+D  sim_mash             Massa do hidrogenio
+D  sim_g		Constante gravitaconal 
+D  sim_mu		Peso molecular padrão
+D ptmass	 	Point mass if external field
+D ext_field      	External field (TRUE)
+D gravtsoft             Termo de suavizamento P.W
+
+PARAMETER sim_mas	REAL    2.78E34
+PARAMETER sim_temp	REAL    1E7
+PARAMETER sim_dotmas	REAL    3.77E17  
+PARAMETER sim_k	        REAL    1.380E-16
+PARAMETER sim_mash	REAL    1.673E-24
+PARAMETER sim_g 	REAL    6.6743E-8
+PARAMETER sim_mu	REAL	1.0
+PARAMETER ptmass	REAL    2.78E34
+PARAMETER gravsoft      REAL    4.12E6
+PARAMETER ext_field    BOOLEAN TRUE
+PARAMETER restart      BOOLEAN TRUE

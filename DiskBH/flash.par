@@ -1,0 +1,118 @@
+#	Disk black hole diode + Rotation
+#		Parameters for initial model
+#		Density, pressure, and velocity on either side of interface
+
+sim_mas = 2.78E34
+sim_temp = 1E7
+sim_dotmas = 3.77E17  
+sim_k = 1.380E-16
+sim_mash = 1.673E-24
+sim_g = 6.6743E-8
+sim_mu = 1.0
+
+# 	gravity parameters
+
+useGravity       	 = .true.
+ptmass   		 = 2.78E34
+gravtsoft                = 4.12E6
+ptxpos   		 = 0.0
+
+
+#		Gas ratio of specific heats
+gamma           = 1.66666667
+
+
+#		Computational volume parameters
+#		Grid dimensionality and geometry
+geometry = polar
+
+
+#		Size of computational volume
+xmin		= 4.1E6
+xmax		= 4.1E7
+ymin		= 0
+ymax		= 180
+
+
+#		Boundary conditions
+xl_boundary_type = "user"
+xr_boundary_type = "user"
+yl_boundary_type = "periodic"
+yr_boundary_type = "periodic"
+
+
+#	Simulation (grid, time, I/O) parameters
+cfl		= 0.8
+basenm          = "DiskRefRot_"
+restart         = .false.
+
+
+#	checkpoint file output parameters
+checkpointFileIntervalTime = 2.10E-5
+checkpointFileIntervalStep = 0
+checkpointFileNumber = 0
+
+
+#	plotfile output parameters
+plotfileIntervalTime = 0.05
+plotfileIntervalStep = 0
+plotfileNumber = 0
+
+nend            = 1000000
+tmax            = 1.05E-2
+run_comment     = "DiskVr0"
+log_file        = "DiskVr0.log"
+eintSwitch     	= 1.e-4
+
+plot_var_1 = "dens"
+plot_var_2 = "pres"
+plot_var_3 = "temp"
+
+#    AMR refinement parameters  
+lrefine_max     = 4
+refine_var_1    = "dens"
+refine_var_2    = "pres"
+nblockx = 4  
+nblocky = 8
+
+# These parameters are used only for the uniform grid
+iGridSize = 400.0   #defined as nxb * iprocs
+jGridSize = 100.0
+#kGridSize = 1
+iProcs = 4	#number or procs in the i direction	
+jProcs = 1
+kProcs = 1
+
+# When using UG, iProcs, jProcs and kProcs must be specified.
+# These are the processors along each of the dimensions
+#FIXEDBLOCKSIZE mode ::
+# When using fixed blocksize, iGridSize etc are redundant in
+# runtime parameters. These quantities are calculated as 
+# iGridSize = NXB*iprocs
+# jGridSize = NYB*jprocs
+# kGridSize = NZB*kprocs
+#NONFIXEDBLOCKSIZE mode ::
+# iGridSize etc must be specified. They constitute the global
+# number of grid points in the physical domain without taking 
+# the guard cell into account. The local blocksize is calculated
+# as iGridSize/iprocs  etc.
+ 
+ 
+## -------------------------------------------------------------##
+##  SWITCHES SPECIFIC TO THE UNSPLIT HYDRO SOLVER               ##
+#	I. INTERPOLATION SCHEME:
+order = 2      # Interpolation order (First/Second/Third/Fifth order)
+use_steepening = .false. # Contact steepening for the third order PPM
+slopeLimiter    = "mc"   # Slope limiters (minmod, mc, vanLeer, hybrid, limited)
+LimitedSlopeBeta= 1.     # Slope parameter for the "limited" slope by Toro
+charLimiting	= .true. # Characteristic limiting vs. Primitive limiting
+
+
+#	II. RIEMANN SOLVERS:
+RiemannSolver	= "hllc"      # Roe, HLL, HLLC, LF
+shockInstabilityFix = .false. # Carbuncle instability fix for the Roe solver
+
+
+#	III. STRONG SHOCK HANDELING SCHEME:
+shockDetect	= .false.     # Shock Detect for numerical stability
+## -------------------------------------------------------------##
